@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>御薗NBR研究会</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    :root { --green-dark:#14532d; --green:#16a34a; --green-bg:#eafbf1; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+      background:linear-gradient(180deg,#eafbf1 0%,#fff 260px); color:#1f2937; padding:24px 16px 56px; }
+    .container { max-width:480px; margin:0 auto; text-align:center; }
+    h1 { font-size:24px; color:var(--green-dark); margin:12px 0 6px; }
+    .card { background:#fff; border-radius:22px; box-shadow:0 6px 18px rgba(22,101,52,.10); padding:20px 16px; margin-top:18px; line-height:1.9; }
+    .ok { color:var(--green); font-weight:bold; font-size:18px; }
+    small { color:#6b7280; display:block; margin-top:8px; word-break:break-all; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="font-size:22px;font-weight:bold;color:var(--green-dark)">🌿 御薗NBR研究会</div>
+    <h1>接続テスト</h1>
+    <div class="card" id="box">読み込み中です…</div>
+  </div>
+  <script>
+    var box = document.getElementById('box');
+    liff.init({ liffId: '2012344350-UrAuPXOV' }).then(function () {
+      if (!liff.isLoggedIn()) { liff.login(); return; }
+      return liff.getProfile().then(function (p) {
+        box.innerHTML = '<div class="ok">接続できました</div>' +
+          '<div>' + p.displayName.replace(/[<>&]/g, '') + ' さん、こんにちは。</div>' +
+          '<small>（テスト表示）ユーザーID: ' + p.userId + '</small>';
+      });
+    }).catch(function (e) {
+      box.textContent = 'エラー: ' + e;
+    });
+  </script>
+</body>
+</html>
