@@ -117,6 +117,8 @@
       '<span class="txt"><b>四海（今回のテーマ）</b><small>四海から考える身体のつながりと、NBR法の診断技術</small></span><span class="arrow" style="color:#ea580c">›</span></a>';
     html += '<a class="item" href="eval.html?s=skill" style="border-color:#fcd34d;background:#fffbeb"><span class="ico">📝</span>' +
       '<span class="txt"><b>筋力検査・実技評価シート</b><small>自己評価の入力と、講師評価との比べ</small></span><span class="arrow">›</span></a>';
+    html += '<a class="item" href="contact.html" style="border-color:#86efac;background:#f0fdf4"><span class="ico">🖐</span>' +
+      '<span class="txt"><b>接触の5段階アンケート</b><small>止めたとき・維持している間の感覚を記録します</small></span><span class="arrow">›</span></a>';
     var items = r.items || [];
     if (!items.length) {
       html += '<div class="card center">いまのところ、表示できる資料はありません。<br>追加されるまで、しばらくお待ちください。</div>';
@@ -126,7 +128,8 @@
       order.forEach(function (t) {
         html += '<div class="sec">' + (ICONS[t] || '📌') + ' ' + esc(t) + '</div>';
         by[t].forEach(function (it) {
-          html += '<a class="item" href="' + esc(safeUrl(it.url)) + '" target="_blank" rel="noopener">' +
+          var su = safeUrl(it.url), ext = /^https?:\/\//i.test(su);
+          html += '<a class="item" href="' + esc(su) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
             '<span class="ico">' + (ICONS[t] || '📌') + '</span>' +
             '<span class="txt"><b>' + esc(it.title) + '</b>' +
             (it.desc ? '<small>' + esc(it.desc) + '</small>' : '') +
