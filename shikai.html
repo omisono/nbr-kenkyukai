@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四海｜御薗NBR研究会</title>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<style>
+:root { --green-dark:#14532d; --green:#16a34a; --green-bg:#eafbf1; --gray:#1f2937; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  background:#fff linear-gradient(180deg,#eafbf1 0%,#fff 260px) no-repeat; min-height:100vh; color:var(--gray); padding:18px 16px 60px; }
+.container { max-width:520px; margin:0 auto; }
+.back { display:inline-block; font-size:15px; font-weight:bold; color:var(--green-dark); text-decoration:none; padding:6px 4px; }
+.brand { text-align:center; font-size:20px; font-weight:bold; color:var(--green-dark); }
+h1 { text-wrap:balance; text-align:center; font-size:23px; line-height:1.5; color:var(--green-dark); margin:12px 0 4px; }
+.tag { text-align:center; margin:6px 0 16px; }
+.tag span { display:inline-block; background:#fff7ed; color:#9a3412; border:2px solid #fdba74; border-radius:999px; font-size:13px; font-weight:bold; padding:3px 12px; }
+.intro { background:#fff; border:2px solid #bbf7d0; border-radius:20px; padding:16px; margin-bottom:16px; box-shadow:0 4px 14px rgba(22,101,52,.08); }
+.intro h2 { margin:0 0 8px; font-size:18px; color:var(--green-dark); }
+.intro p { margin:8px 2px 0; font-size:16.5px; line-height:1.95; }
+details.toc { background:#fff; border:2px solid #bbf7d0; border-radius:16px; margin-bottom:6px; }
+details.toc summary { cursor:pointer; padding:14px; font-weight:bold; color:var(--green-dark); font-size:16px; list-style:none; }
+details.toc summary::-webkit-details-marker { display:none; }
+details.toc summary::after { content:"▼"; float:right; font-size:12px; color:var(--green); margin-top:3px; }
+details.toc[open] summary::after { content:"▲"; }
+details.toc ol { margin:0; padding:0 14px 14px 36px; }
+details.toc li { margin:8px 0; line-height:1.6; font-size:15px; }
+details.toc a { color:var(--green-dark); text-decoration:none; }
+.article p { font-size:16.5px; line-height:2; margin:0 0 12px; }
+h2.sec { font-size:19px; line-height:1.55; color:var(--green-dark); margin:34px 0 12px; padding-left:10px; border-left:6px solid var(--green); scroll-margin-top:12px; }
+p.key { background:var(--green-bg); border-radius:12px; padding:14px; font-size:17px !important; line-height:1.9 !important; color:var(--green-dark); font-weight:bold; margin:14px 0 !important; }
+ul.quotes { list-style:none; margin:0 0 14px; padding:0; }
+ul.quotes li { background:#f0fdf4; border-left:5px solid var(--green); border-radius:8px; padding:10px 12px; margin-bottom:8px; font-size:16.5px; font-weight:bold; color:var(--green-dark); line-height:1.8; }
+.wip { display:flex; align-items:center; gap:12px; background:#f3f4f6; border:2px dashed #cbd5e1; border-radius:16px; padding:14px; margin:6px 0 16px; }
+.wip .ico { font-size:28px; filter:grayscale(1); opacity:.6; }
+.wip .txt { flex:1; }
+.wip b { display:block; font-size:16px; color:#6b7280; line-height:1.5; }
+.wip small { display:block; font-size:13px; color:#9ca3af; margin-top:3px; line-height:1.6; }
+.badge { font-size:12px; font-weight:bold; background:#e5e7eb; color:#6b7280; border-radius:999px; padding:3px 10px; white-space:nowrap; }
+.cards { display:grid; gap:12px; margin:6px 0 18px; }
+.sea { background:#fff; border:2px solid #bbf7d0; border-radius:16px; overflow:hidden; box-shadow:0 4px 12px rgba(22,101,52,.07); }
+.sea-h { background:var(--green); color:#fff; font-weight:bold; font-size:18px; padding:9px 14px; }
+.sea dl { margin:0; padding:10px 14px 14px; }
+.sea dt { font-size:12.5px; color:#6b7280; font-weight:bold; margin-top:8px; }
+.sea dd { margin:2px 0 0; font-size:16px; line-height:1.7; }
+.obs { background:#fff; border-radius:18px; box-shadow:0 4px 14px rgba(22,101,52,.09); padding:14px 16px 8px; margin:14px 0; scroll-margin-top:12px; }
+.obs h3 { margin:0 0 8px; font-size:17.5px; line-height:1.5; color:var(--green-dark); }
+.obs h3 .n { display:inline-block; min-width:28px; height:28px; line-height:28px; text-align:center; background:var(--green); color:#fff; border-radius:999px; font-size:15px; margin-right:8px; }
+.obs p { font-size:16.5px; line-height:1.95; margin:0 0 10px; }
+.flow { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:4px 6px; margin:8px 0 16px; }
+.flow span { background:var(--green-bg); border:2px solid #bbf7d0; border-radius:999px; padding:6px 12px; font-weight:bold; color:var(--green-dark); font-size:15px; }
+.flow i { font-style:normal; color:var(--green); font-weight:bold; }
+.steps { margin:6px 0 16px; }
+.step { display:flex; gap:12px; background:#fff; border:2px solid #bbf7d0; border-radius:16px; padding:12px; margin-bottom:10px; }
+.step .no { flex:0 0 30px; height:30px; line-height:30px; text-align:center; background:var(--green); color:#fff; border-radius:999px; font-weight:bold; }
+.step b { font-size:17px; color:var(--green-dark); }
+.step small { display:block; font-size:13px; color:#6b7280; margin-top:2px; line-height:1.6; }
+.step p { margin:6px 0 0 !important; font-size:15.5px !important; line-height:1.8 !important; }
+.three { display:grid; gap:10px; margin:6px 0 16px; }
+.three div { background:#fffbeb; border:2px solid #fcd34d; border-radius:14px; padding:12px 14px; }
+.three b { color:#92400e; font-size:17px; }
+.three p { margin:4px 0 0 !important; font-size:15.5px !important; line-height:1.8 !important; }
+.eval { display:flex; align-items:center; gap:12px; background:#fffbeb; border:2px solid #fcd34d; border-radius:18px; padding:14px; text-decoration:none; color:inherit; margin:16px 0; }
+.eval .ico { font-size:28px; }
+.eval b { display:block; font-size:17px; color:#92400e; }
+.eval small { display:block; font-size:13px; color:#78350f; margin-top:3px; line-height:1.6; }
+.eval .ar { margin-left:auto; font-size:24px; color:#d97706; }
+.center { text-align:center; padding:30px 10px; line-height:1.9; }
+.foot { text-align:center; font-size:13px; color:#6b7280; margin-top:30px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="./">← 研究会のページへ戻る</a>
+  <div class="brand">🌿 御薗NBR研究会</div>
+  <div id="gate" class="center">読み込み中です…</div>
+  <div id="main" style="display:none">
+    <div class="tag"><span>今回の講習会のテーマ</span></div>
+    <h1>四海から考える身体のつながりと、NBR法の診断技術</h1>
+
+    <section class="intro">
+      <h2>今回のセミナーで共有したいこと</h2>
+      <p>治療が一瞬で終わることと、そこに至る観察や判断が簡単であることは、同じではありません。</p><p>熟練者の最後の刺激だけを見てまねても、その前に行われている比較、条件選択、判断の積み重ねは見えません。</p><p>今回は、完成した手技だけを見せるのではなく、その土台となる観察過程を、一つずつ共有することに専念したいと思います。</p><p>四海という大きな広がりを考えることと、指先の接触を丁寧に確認すること。</p><p>私にとって、この二つはつながっています。</p><p>全体を捉えるためにこそ、個々の観察を積み重ねる。そして、相手を観察するために、観察している自分自身にも気づく。</p><p>そこから、今回の診断技術の練習を始めていきたいと思います。</p>
+    </section>
+
+    <details class="toc">
+      <summary>もくじ</summary>
+      <ol><li><a href="#s1">はじめに――穴を特定するのではなく、どこでもよいようにする</a></li><li><a href="#s2">四海について――川から海へ、身体全体を考える</a></li><li><a href="#s3">古典に記された四海と「輸」</a></li><li><a href="#s4">四海を、広範囲に関わる機能として捉える</a></li><li><a href="#s5">全体を捉えるために、個々の反応を観察する</a></li><li><a href="#s6">NBR法の診断手技で、何を観察するのか</a></li><li><a href="#s7">「気づく」ことから始まる診断</a></li><li><a href="#s8">止める・維持する・力を抜く――その違いを感じる</a></li></ol>
+    </details>
+
+    <div class="article">
+<h2 class="sec" id="s1">はじめに――穴を特定するのではなく、どこでもよいようにする</h2>
+<p class="key">NBR法は「穴を特定する技術ではなく、穴の位置をどこでもよいようにする技術」です。</p>
+<p>穴の位置を気にする方は多いと思います。しかし、その穴が適応になっていなければ、位置にこだわって刺激しても、期待する変化にはつながりません。ここが、本当に重要です。</p>
+<p>「Aという症状にはBという穴を使う」と考えるのは、わかりやすい方法です。B穴の代わりにC穴やD穴を選んでも、症状と穴を一対一で結びつけるという構造は同じです。</p>
+<p>しかし、私の臨床での観察によると、そのような対応だけで刺激すると、必要な変化が得られなかったり、余計な刺激が加わって刺激過多になったりすることがあります。</p>
+<p>そのため、まず身体全体にどのような反応があるかを観察します。</p>
+<p>どこに現れているのか。どの深さにあるのか。どのような質なのか。そして、それらがどう関わり合っているのか。</p>
+<p>反応の強弱や、確認・調整する順番を確かめながら、関わる条件を一つずつ整理していきます。</p>
+<div class="wip"><span class="ico">🔎</span><span class="txt"><b>首や肩の可動状態の観察、圧痛の観察、観察ポイント</b><small>首や肩の可動状態の観察、圧痛の観察、観察ポイントなどを、ご紹介します。</small></span><span class="badge">準備中</span></div>
+<p>そのように進めると、私の臨床では、特定の穴でなければならないという意味が薄れ、その周囲への軽い刺激だけで十分に変化することがあります。</p>
+<p class="key">最初から、どこでもよいのではありません。どこでもよいようにしていくことが大切なのです。</p>
+<p>私は、この過程を「線形から非線形へ」「非線形から線形へ」と捉えています。</p>
+<p>ここでいう線形的な見方とは、個々の反応や関係を追う見方です。非線形的な見方とは、複数の要素が影響し合い、条件や順番によって反応が変わる全体を捉える見方です。これらを臨床上の見方として使い分けています。</p>
+<p>個々の反応を確かめ、それらを全体のつながりとして捉える。そして、複雑に関わり合う条件を整理し、複数の反応に共通する働きかけを見いだす。</p>
+<p>私は、その共通する反応を「最大公約数反応」と呼んでいます。</p>
+<p>最後のわずかな刺激で変化が起こる状態へ導くこと。それが目的です。</p>
+<p>だから、最後に刺激した場所だけを見ても、技術の全体像はわかりません。その場所に刺激したという情報だけでは、なぜそこで変化したのかを理解できないのです。</p>
+<p>そこに至るまでに何を観察し、何を先に調整したのか。その積み重ねが重要です。</p>
+<p>今回のセミナーでは、そのための基礎技術を、一つずつ確認していきたいと思います。そのまえに四海の概要を説明してみたいと思います。</p>
+<h2 class="sec" id="s2">四海について――川から海へ、身体全体を考える</h2>
+<p>今回取り上げる「四海」は、こうした身体全体のつながりを考える入り口です。</p>
+<p>東洋医学では、十二正経を河川に例えます。十二正経が川なら、それらが注ぐ海があるはずです。</p>
+<p>川には、それぞれの流れがあります。しかし、海に注げば、その水を「これはこの川の水」と明確に分けることはできません。さまざまな流れが混ざり合い、一つの海をつくっています。</p>
+<p>名前の異なる海も、互いにつながっています。その意味で、海は一つです。</p>
+<p>身体も、同じように考えられるのではないでしょうか。</p>
+<p>つまり、複雑な要素で成り立っているということです。</p>
+<p>経絡や臓腑を一つずつ分けて観察することには意味があります。そのうえで、それぞれがどのように関わり合い、全身の働きを成り立たせているのかを見る必要があります。</p>
+<p>私が四海に注目しているのは、個別に観察してきた反応を、全体のつながりの中で捉え直す手がかりになると考えているからです。いわば経絡をまとめて考えるということです。</p>
+<p>髄海、気海、水穀の海、血海。</p>
+<p>この四つの海を入り口に、臨床で触れている身体の反応と、脳神経系を含む全身の働きを考えていきます。</p>
+<h2 class="sec" id="s3">古典に記された四海と「輸」</h2>
+<p>『黄帝内経』の『霊枢・海論第三十三』には、四海と、それぞれに対応する「輸」が記されています。</p>
+<div class="cards"><div class="sea"><div class="sea-h">髄海</div><dl><dt>海に当たるもの</dt><dd>脳</dd><dt>古典に記された「輸」</dt><dd>上は「其の蓋」、下は風府</dd><dt>対応する経穴としての解釈</dt><dd>上は百会とする解釈や、顖会（しんえ）とする注釈がある。下は風府</dd></dl></div><div class="sea"><div class="sea-h">気海</div><dl><dt>海に当たるもの</dt><dd>膻中</dd><dt>古典に記された「輸」</dt><dd>上は柱骨の上下、前は人迎</dd><dt>対応する経穴としての解釈</dt><dd>瘂門・大椎・人迎</dd></dl></div><div class="sea"><div class="sea-h">水穀の海</div><dl><dt>海に当たるもの</dt><dd>胃</dd><dt>古典に記された「輸」</dt><dd>上は気街、下は三里</dd><dt>対応する経穴としての解釈</dt><dd>気衝・足三里</dd></dl></div><div class="sea"><div class="sea-h">血海</div><dl><dt>海に当たるもの</dt><dd>衝脈〔本文では「十二経の海」〕</dd><dt>古典に記された「輸」</dt><dd>上は大杼、下は巨虚の上下廉</dd><dt>対応する経穴としての解釈</dt><dd>大杼・上巨虚・下巨虚</dd></dl></div></div>
+<p>ここで、考えていただきたいことがあります。</p>
+<p>これらを、そのまま「四海を治療するための代表穴」と理解してよいのでしょうか。</p>
+<p>「輸」には、運ぶ、送り届けるという意味があります。また、五輸穴、すなわち井・滎・兪・経・合にも、「出る・流れる・注ぐ・行く・入る」という、動きや過程を表す言葉が使われています。</p>
+<p>そこから私は、四海の輸も、川が海へ注ぐ河口のようなものではないかと考えました。</p>
+<p>ただ、考えているうちに、「河口」という表現でも、まだ場所を限定しすぎているように感じてきました。</p>
+<p>海とは、もっと広いものではないでしょうか。</p>
+<p>さまざまな川が注ぎ、流れが混ざり合い、潮が動く。その先には、見渡すことのできない広がりがあります。</p>
+<p>古代の人たちも、海の向こうにはどのような世界があるのだろうと、想像を巡らせたのではないでしょうか。「海」という言葉には、そうした未知の広がりへの感覚も含まれていたのかもしれません。</p>
+<p>身体の海についても、私は同じように考えています。</p>
+<h2 class="sec" id="s4">四海を、広範囲に関わる機能として捉える</h2>
+<p>気だけ、水だけ、血だけというように、個別に切り分けられるものではなく、それらが関わり合う総合的な働きを「海」と呼んだのではないか。</p>
+<p>私は、そのような仮説を立てています。</p>
+<p>気海・水穀の海・血海を、それぞれ、気・水・血という見方と重ねて考えることもできます。</p>
+<p>ただし、水穀の海を水だけの働きと考えているわけではありません。食べ物や水分を受け取り、身体を養う働きには、神経や血管を含むさまざまな仕組みが関わっています。</p>
+<p>また、海論篇の輸の配置を見ると、頭部や頸部、上背部が目に留まります。血海にも大杼が含まれています。</p>
+<p>そこから私は、四海は脳神経系の働きを示しているのではないか、とも考えました。</p>
+<p>しかし、「神経系」と呼んでしまうと、また一つの仕組みに限定してしまいます。脳神経系自体が、感覚、運動、呼吸、循環など、多くの働きと関わっているからです。</p>
+<p>私が考えたいのは、神経を含みながら、さまざまな働きが関わり合う広がりです。</p>
+<p>四海は、そうした広範囲の機能を「海」として捉えたものではないか。</p>
+<p>そう考えると、四つの海は別々の機能を収めた箱ではなく、同じ身体の働きを、それぞれ異なる側面から捉えたものとも考えられます。</p>
+<p>気・水・血という分類も、互いに混ざり合う身体の働きを観察するための見方なのかもしれません。</p>
+<p>この全体を捉える視点は、NBR法の考え方にも通じます。私は、四海を用いたこうした捉え方を、コン・ゴン・ハク・スイ・ダラニという垂直五段変化の中では、「コン」の段階に位置づけています。つまり気が活性してこそ複雑な仕組みがわかる段階の気の活性が必要ということです。（線形から非線形の医学）</p>
+<p>そして、それぞれの海は閉じた容器ではありません。互いにつながり、身体の外の世界ともつながっています。呼吸も、食事も、感覚も、身体と環境とのやり取りの中で成り立っています。</p>
+<p>そう考えると、輸として記された場所も、その海のすべてを代表する固定点とは言い切れません。</p>
+<p>広い働きの中で起きている、何らかの変化が現れる場所。</p>
+<p>今の私には、この表現がしっくりきます。</p>
+<p>もちろん、これは私の仮説です。古典の著者がそのように考えていたと断定するものではありません。</p>
+<p>ただ、古典を「この穴は何に効くか」という対応表だけで読むのは、もったいないと思うのです。</p>
+<p>なぜ「海」と呼んだのか。</p>
+<p>なぜ「輸」という言葉を使ったのか。</p>
+<p>そこに現れる変化は、どのような全体の働きとつながっているのか。</p>
+<p>今回のセミナーでは、こうした疑問を、実際の触診や身体の動きと照らし合わせて考えていきます。</p>
+<h2 class="sec" id="s5">全体を捉えるために、個々の反応を観察する</h2>
+<p>夢分流のお腹の反応についても、私は四海と近いところを感じています。</p>
+<p>お腹に現れる反応は、一か所だけではありません。複数の場所に反応がある以上、その一か所だけを取り上げて、「心がおかしい」「胃がおかしい」と決めることはできません。</p>
+<p>個別の反応を観察しながら、それらが同時に現れている全体をどう捉えるかが大切になります。このような治療法は古典の中でも特殊な治療法とされ、あまり多くの記述がありません。現代にそれを蘇らせるためには、NBR的な思考で生体をとらえる必要があります。</p>
+<p>例えば、神経に問題があると考えられる場合でも、神経だけを切り離して捉えることはできません。周囲の組織や血流、組織液なども関わっています。</p>
+<p>全体が関わっていても、すべてが同じ割合、同じ強さで現れるわけではありません。</p>
+<p class="key">つまり四海は、分解ではなく統合です。</p>
+<p>主役になる働きもあれば、背景で支えている働きもあります。ある条件では曖昧だった反応が、別の条件では明瞭になることもあります。</p>
+<p>強い反応が、必ずしも最も重要な反応とは限りません。明確に感じられることと、全体の主役であることは、分けて考える必要があります。</p>
+<p>だからこそ、何を先に観察するのか、どの条件から確認するのかという順番が大切になります。</p>
+<p>また、複数の働きが関わっているなら、反応が一つの意味に決まらず、曖昧に現れることもあります。</p>
+<p>その曖昧さを、すぐに検査の失敗と決める必要はありません。同時に、曖昧だから何でも正しいとするのでもありません。</p>
+<p>条件や順番を変え、別の角度から観察し、その反応がどう変わるかを確かめていきます。</p>
+<p>なぜ曖昧に現れるのかを考えることも、身体を理解するための大切な過程です。</p>
+<h2 class="sec" id="s6">NBR法の診断手技で、何を観察するのか</h2>
+<p>私がNBR法で用いる筋力検査は、こうした反応の違いを捉えるためのものです。</p>
+<p>「筋力検査」という名前から想像されるような、強い力で押し合い、筋肉の強さを測る検査ではありません。</p>
+<p>私が重視するのは、力を加えることを最小限にし、接触したときの微細な抵抗や、その変化を感じ取ることです。</p>
+<p>その意味で、私は触診も筋力検査と地続きのものとして捉えています。触れて硬さを確かめるときにも、こちらの接触に対する身体の応答を見ているからです。</p>
+<p>しかし、軽く触れれば、それだけでわかるわけではありません。</p>
+<p>接触の仕方、力加減、速度、リズム、自分の手指の緊張。それらによって、感じ取れる反応は変わります。</p>
+<p>今回のセミナーでは、特に次の八項目を、各自で検証していただきたいと思います。</p>
+<div class="obs" id="o1"><h3><span class="n">1</span>軽さ・接触圧</h3><p>反応を確かめようとして、押す力を増やしていないか。</p>
+<p>相手の状態を知りたいのに、自分の「我」が接触に入り込むことがあります。</p>
+<p>ここでいう「我」は、「ここが異常なはずだ」という思い込みだけではありません。</p>
+<ul class="quotes"><li>「これで本当に合っているのか」</li><li>「もっとはっきり感じたい」</li></ul>
+<p>そう思った瞬間に、接触圧を変えてしまうことも含みます。</p>
+<p>なので、今回は止めるということを最初に実験してもらいます。殆ど触れないで止める。軽く触れて止める。</p>
+<p>術者の指が沈む程度に触れる。相手の皮膚が沈むぐらいに触れる。</p>
+<p>止める条件を変えて、その変化を感じとり、刺激する前と刺激した後の変化を観察する。相手の変化と、自分が加えた変化を区別する必要があります。</p></div>
+<div class="obs" id="o2"><h3><span class="n">2</span>速度・リズム</h3><p>考え込むことで、接触の速度やリズムが変わっていないか。</p>
+<p>私が速度やリズムを重視するのは、一つの反応に思考が居つき、答えを決めつけることを避けたいからです。</p>
+<p>一定のリズムで観察しながら、違いに気づく。そのために、スピード・リズム・軽さを基本条件としています。</p></div>
+<div class="obs" id="o3"><h3><span class="n">3</span>自分の手指の状態</h3><p>検者自身の手指に、緊張や固定が生じていないか。</p>
+<p>相手の硬さを調べているつもりでも、自分の指を固めていたり、手首や肩で支えすぎていたりすることがあります。</p>
+<p>相手だけでなく、観察している自分の状態にも注意を向けます。</p></div>
+<div class="obs" id="o4"><h3><span class="n">4</span>接触中の変化</h3><p>触れる前、触れた瞬間、その接触を保っている間で、何が変わるか。</p>
+<p>沈み込みや跳ね返りも、一つにまとめずに観察します。</p>
+<p>その際、自分の圧が変わったのか、相手の反応が変わったのか、すぐに決めずに確かめることが必要です。</p>
+<p>三番と四番は、一番の軽さ・接触圧ともつながっています。同じ条件で観察できているかを確認する項目です。</p></div>
+<div class="obs" id="o5"><h3><span class="n">5</span>感覚と解釈の区別</h3><p>実際に感じたことと、「こうだろう」と考えたことを分ける。</p>
+<ul class="quotes"><li>「最初の診断と矛盾している」</li><li>「さっきと違う答えになるのはおかしい」</li></ul>
+<p>そのように感じたとき、目の前の反応を、前の判断に合わせてしまっていないでしょうか。</p>
+<p>まず何を感じたのか。その後で何を考えたのか。この二つを分けて振り返ります。</p>
+<p>ここは意識を使って診断の一番難しいところでありキモです。</p></div>
+<div class="obs" id="o6"><h3><span class="n">6</span>曖昧な反応や矛盾を、いったん脇に置く</h3><p>これは、とても重要な項目です。</p>
+<p>曖昧な反応を無理に二択へ決めない。矛盾する反応が出ても、すぐにどちらかを間違いと決めない。</p>
+<p>いったん保留し、別の条件や部位を観察する。その後に、もう一度戻って確認します。</p>
+<p>わからないことを脇に置くのは、考えることを放棄するのではありません。判断に必要な情報が集まるまで、結論を急がないということです。</p></div>
+<div class="obs" id="o7"><h3><span class="n">7</span>条件と検査の順番</h3><p>何を先に確認し、条件を変えると反応がどう変わるかを追う。</p>
+<p>反応が曖昧なら、同じ場所を何度も強く確かめるだけではなく、条件や観察の順番を見直します。</p>
+<p>ここでも、未解決の反応をいったん置いておく能力が必要です。</p></div>
+<div class="obs" id="o8"><h3><span class="n">8</span>反応の強弱と、全体の関係</h3><p>強い反応、明確な反応だからといって、それを一番の問題と決めない。</p>
+<p>ほかの反応とどう関わるのか。その反応に働きかけると、離れた場所や動きがどう変わるのか。</p>
+<p>局所の強さだけでなく、全体との関係から判断します。</p></div>
+<p>この八項目は、それぞれ独立したものではありません。接触圧、自分の緊張、思考、条件設定、判断の順番は、互いにつながっています。</p>
+<p>私が大切にしているのは、最初の印象を確定事項にせず、疑いを持って観察することです。そして、得られた情報を持ち寄り、総合的に判断していきます。</p>
+<h2 class="sec" id="s7">「気づく」ことから始まる診断</h2>
+<p>行動を考えるための大まかな整理として、次の流れがあります。</p>
+<div class="flow"><span>気づく</span><i>→</i><span>見積もる</span><i>→</i><span>選ぶ</span><i>→</i><span>準備する</span><i>→</i><span>動く</span><i>→</i><span>確かめる</span></div>
+<p>例えば、腕を上げるときも、脳の一か所だけがすべてを決めているわけではありません。複数の領域が連携しています。</p>
+<div class="steps"><div class="step"><div class="no">1</div><div class="body"><b>気づく</b><small>主に関わる場所の例：感覚野、頭頂葉、注意に関わる領域など</small><p>身体や周囲の情報を捉え、変化に気づく</p></div></div><div class="step"><div class="no">2</div><div class="body"><b>見積もる</b><small>主に関わる場所の例：前頭前野、扁桃体など</small><p>目的、経験、感情、予想される結果などを照らし合わせる</p></div></div><div class="step"><div class="no">3</div><div class="body"><b>選ぶ</b><small>主に関わる場所の例：前頭前野、基底核など</small><p>行動候補を選び、ほかの行動を抑える</p></div></div><div class="step"><div class="no">4</div><div class="body"><b>準備する</b><small>主に関わる場所の例：運動前野、補足運動野など</small><p>動作に必要な準備をする</p></div></div><div class="step"><div class="no">5</div><div class="body"><b>動く</b><small>主に関わる場所の例：一次運動野、脳幹、脊髄など</small><p>筋活動を調整し、動きを起こす</p></div></div><div class="step"><div class="no">6</div><div class="body"><b>確かめる</b><small>主に関わる場所の例：感覚野、小脳など</small><p>実際の結果を予想と照らし合わせ、調整する</p></div></div></div>
+<p>これは理解のために分けた表です。実際には、各段階が一方向に順番どおり進むだけではなく、重なり合い、行き来しています。</p>
+<p>今回、特に注目したいのは、「気づく」と「見積もる」です。</p>
+<p>診断しようと決めた時点で、私たちは何かに注意を向け、何らかの予想を持っています。その予想が観察を助けることもあれば、思い込みにつながることもあります。</p>
+<p>だからこそ、自分が何に注意を向け、何を感じ、何を予想しているのかを知る必要があります。</p>
+<p>まず覚えるなら、次の三つです。</p>
+<div class="three"><div><b>前頭前野</b><p>目的や選択肢を考える働きに関わる。</p></div><div><b>基底核</b><p>行動の選択や、実行する動きと抑える動きの調整に関わる。</p></div><div><b>運動系</b><p>選んだ行動を、実際の身体の動きへつなげる。</p></div></div>
+<p>ただし、これらも一つの部位が一つの仕事だけをしているわけではありません。</p>
+<p>診断の練習で大切なのは、脳の部位名を覚えることだけでなく、実際に自分の感覚を比較することです。脳の仕組みを理解してわかることは、その混じり合う複雑性です。脳の領域の役割はある程度わかっています。しかし、臨床ではそんなにキッチリわかれるものではなく、様々な脳の領域が強調しあっています。</p>
+<p>まさにNBR的な非線形的な要素です。</p>
+<h2 class="sec" id="s8">止める・維持する・力を抜く――その違いを感じる</h2>
+<p>今回の実技では、「力を入れる」「動きを止める」「止めた状態を維持する」「力を抜く」を分けて経験していただきたいと思います。</p>
+<p>これらは、同じことではありません。</p>
+<p>指先を空中でピタッと止めることはできても、その位置を保ち続けると、重さや支える力を感じます。指だけでなく、手首や肩に力が入ることもあります。</p>
+<p>ところが、止めようとしている間は、動かさないことに注意が向いているため、支える力に気づいていない場合があります。</p>
+<p>そこから力を抜くと、感覚が変わる。</p>
+<ul class="quotes"><li>「ここが抜けた。ということは、さっきまで、ここに力が入っていたのか」</li></ul>
+<p>そのように、抜けた瞬間の変化から、直前の緊張に気づくことがあります。</p>
+<p>私自身、指先で試してみて、明確に力を入れるときと、止めようとするとき、その状態を維持するときでは、感覚が違うことがよくわかりました。</p>
+<p>力が入っている最中に気づけなくても、抜く前と後を比べるとわかることがあるのです。</p>
+<p>これは、触診にもつながります。</p>
+<p>軽く触れた瞬間と、その軽さを保っている間では、自分の状態が変わっているかもしれません。最初は軽く触れていても、途中で指が固まったり、少しずつ圧が増えたりすることがあります。</p>
+<p>その変化に、自分で気づけるでしょうか。</p>
+    </div>
+
+    <a class="eval" href="eval.html?s=skill"><span class="ico">📝</span><span><b>筋力検査・実技評価シート</b><small>八項目の自己評価を入力します</small></span><span class="ar">›</span></a>
+
+    <a class="back" href="./">← 研究会のページへ戻る</a>
+    <div class="foot">御薗NBR研究会</div>
+  </div>
+</div>
+<script>
+  var LIFF_ID = '2012344350-UrAuPXOV';
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbxkdezeZ6jp7Rox44fJGwke6skkPlQ7E42G9KMdborNcSTQtoxfu8T-QsjUvklixDFI1A/exec';
+  var gate = document.getElementById('gate'), main = document.getElementById('main');
+  function deny(m) { gate.innerHTML = m + '<br><br><a class="back" href="./">登録のページへ ›</a>'; }
+  liff.init({ liffId: LIFF_ID }).then(function () {
+    if (!liff.isLoggedIn()) { liff.login(); return; }
+    return fetch(GAS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'status', idToken: liff.getIDToken() }) }).then(function (r) { return r.json(); }).then(function (r) {
+      if (r.ok && r.registered) { gate.style.display = 'none'; main.style.display = 'block'; }
+      else deny('このページは、登録した方だけがご覧いただけます。');
+    });
+  }).catch(function () { deny('読み込めませんでした。LINEから開き直してください。'); });
+</script>
+</body>
+</html>

@@ -113,6 +113,8 @@
       html += '<div class="chips">' + r.groups.map(function (g) { return '<span class="chip">' + esc(g) + '</span>'; }).join('') + '</div>';
     }
     if (r.admin) html += '<p class="hint" style="text-align:center">（管理者表示：すべての項目が見えています）</p>';
+    html += '<a class="item" href="shikai.html" style="border-color:#fb923c;background:#fff7ed"><span class="ico">🌊</span>' +
+      '<span class="txt"><b>四海（今回のテーマ）</b><small>四海から考える身体のつながりと、NBR法の診断技術</small></span><span class="arrow" style="color:#ea580c">›</span></a>';
     html += '<a class="item" href="eval.html?s=skill" style="border-color:#fcd34d;background:#fffbeb"><span class="ico">📝</span>' +
       '<span class="txt"><b>筋力検査・実技評価シート</b><small>自己評価の入力と、講師評価との比べ</small></span><span class="arrow">›</span></a>';
     var items = r.items || [];
