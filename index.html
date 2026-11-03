@@ -58,7 +58,7 @@
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
     return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
-  function safeUrl(u) { return /^https?:\/\//i.test(u) ? u : '#'; }
+  function safeUrl(u) { u = String(u || '').trim(); return (/^https?:\/\//i.test(u) || /^[A-Za-z0-9_\-]+\.html(\?[^\s]*)?$/.test(u)) ? u : '#'; }
 
   function call(payload) {
     payload.idToken = idToken;
