@@ -6,35 +6,147 @@
   <title>御薗NBR研究会</title>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <style>
-    :root { --green-dark:#14532d; --green:#16a34a; --green-bg:#eafbf1; }
+    :root { --green-dark:#14532d; --green:#16a34a; --green-bg:#eafbf1; --gray:#1f2937; }
     * { box-sizing:border-box; }
     body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
-      background:linear-gradient(180deg,#eafbf1 0%,#fff 260px); color:#1f2937; padding:24px 16px 56px; }
-    .container { max-width:480px; margin:0 auto; text-align:center; }
-    h1 { font-size:24px; color:var(--green-dark); margin:12px 0 6px; }
-    .card { background:#fff; border-radius:22px; box-shadow:0 6px 18px rgba(22,101,52,.10); padding:20px 16px; margin-top:18px; line-height:1.9; }
-    .ok { color:var(--green); font-weight:bold; font-size:18px; }
-    small { color:#6b7280; display:block; margin-top:8px; word-break:break-all; }
+      background:#fff linear-gradient(180deg,#eafbf1 0%,#fff 260px) no-repeat; min-height:100vh; color:var(--gray); padding:22px 16px 56px; }
+    .container { max-width:480px; margin:0 auto; }
+    .brand { text-align:center; font-size:22px; font-weight:bold; color:var(--green-dark); }
+    h1 { text-align:center; font-size:24px; line-height:1.4; color:var(--green-dark); margin:10px 0 4px; }
+    .lead { text-align:center; font-size:15px; line-height:1.8; color:#374151; margin:0 0 16px; }
+    .card { background:#fff; border-radius:22px; box-shadow:0 6px 18px rgba(22,101,52,.10); padding:18px 16px; margin-bottom:16px; }
+    .card h2 { margin:0 0 10px; font-size:18px; color:var(--green-dark); }
+    label { display:block; font-weight:bold; font-size:15px; margin:14px 0 6px; color:var(--green-dark); }
+    input[type=text] { width:100%; font-size:18px; padding:13px 12px; border:2px solid #bbf7d0; border-radius:12px; background:#fff; }
+    input[type=text]:focus { outline:none; border-color:var(--green); }
+    .hint { font-size:13px; color:#6b7280; margin:6px 2px 0; line-height:1.7; }
+    button.main { width:100%; margin-top:18px; background:var(--green); color:#fff; border:0; border-radius:14px; font-size:18px; font-weight:bold; padding:15px; box-shadow:0 6px 16px rgba(22,163,74,.3); }
+    button.main:disabled { opacity:.6; }
+    .err { background:#fef2f2; color:#b91c1c; border-radius:12px; padding:10px 12px; margin-top:12px; font-size:14.5px; line-height:1.7; display:none; }
+    .chips { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin:0 0 16px; }
+    .chip { background:#fff7ed; color:#9a3412; border:2px solid #fdba74; border-radius:999px; font-size:13px; font-weight:bold; padding:3px 12px; }
+    .sec { font-size:15px; font-weight:bold; color:#4b5563; margin:20px 4px 8px; }
+    a.item { display:flex; align-items:center; gap:12px; background:#fff; border:2px solid #bbf7d0; border-radius:18px; padding:14px; margin-bottom:10px;
+      text-decoration:none; color:inherit; box-shadow:0 4px 12px rgba(22,101,52,.08); }
+    a.item:active { background:#f0fdf4; }
+    .ico { font-size:28px; line-height:1; flex:0 0 auto; }
+    .txt { flex:1 1 auto; }
+    .txt b { display:block; font-size:17px; color:var(--green-dark); line-height:1.5; }
+    .txt small { display:block; font-size:13px; color:#4b5563; margin-top:3px; line-height:1.6; }
+    .txt .tg { color:#9a3412; }
+    .arrow { font-size:24px; color:var(--green); flex:0 0 auto; }
+    details.more { margin-top:22px; background:#fff; border:2px solid #bbf7d0; border-radius:16px; }
+    details.more summary { cursor:pointer; padding:14px; font-weight:bold; color:var(--green-dark); font-size:15px; }
+    details.more .inner { padding:0 14px 16px; }
+    .center { text-align:center; padding:30px 10px; line-height:1.9; }
+    .foot { text-align:center; font-size:13px; color:#6b7280; margin-top:26px; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div style="font-size:22px;font-weight:bold;color:var(--green-dark)">🌿 御薗NBR研究会</div>
-    <h1>接続テスト</h1>
-    <div class="card" id="box">読み込み中です…</div>
+    <div class="brand">🌿 御薗NBR研究会</div>
+    <div id="app"><div class="center">読み込み中です…</div></div>
+    <div class="foot">御薗NBR研究会</div>
   </div>
-  <script>
-    var box = document.getElementById('box');
-    liff.init({ liffId: '2012344350-UrAuPXOV' }).then(function () {
-      if (!liff.isLoggedIn()) { liff.login(); return; }
-      return liff.getProfile().then(function (p) {
-        box.innerHTML = '<div class="ok">接続できました</div>' +
-          '<div>' + p.displayName.replace(/[<>&]/g, '') + ' さん、こんにちは。</div>' +
-          '<small>（テスト表示）ユーザーID: ' + p.userId + '</small>';
+
+<script>
+  var LIFF_ID = '2012344350-UrAuPXOV';
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbxkdezeZ6jp7Rox44fJGwke6skkPlQ7E42G9KMdborNcSTQtoxfu8T-QsjUvklixDFI1A/exec';
+  var ICONS = { '動画':'🎥', '資料':'📄', 'お知らせ':'📢', '評価':'📝', 'フォーム':'📝' };
+  var app = document.getElementById('app');
+  var idToken = '';
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+    return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+  function safeUrl(u) { return /^https?:\/\//i.test(u) ? u : '#'; }
+
+  function call(payload) {
+    payload.idToken = idToken;
+    return fetch(GAS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+      .then(function (r) { return r.json(); });
+  }
+
+  function showError(msg) {
+    app.innerHTML = '<div class="card center">' + esc(msg) + '<br><button class="main" onclick="location.reload()">もう一度読み込む</button></div>';
+  }
+
+  /* ---- 登録画面 ---- */
+  function renderRegister(extra) {
+    app.innerHTML =
+      '<h1>はじめての方へ</h1>' +
+      '<p class="lead">講習会でお伝えした「合言葉」と、<br>お名前を入力してください。</p>' +
+      '<div class="card">' + formHtml() + '</div>';
+    bindForm();
+  }
+  function formHtml() {
+    return '<label for="nm">お名前（フルネーム）</label>' +
+      '<input type="text" id="nm" autocomplete="name" placeholder="例：山田 太郎">' +
+      '<div class="hint">名簿との照合に使います。</div>' +
+      '<label for="cd">合言葉</label>' +
+      '<input type="text" id="cd" autocomplete="off" autocapitalize="off" placeholder="講習会で伝えた言葉">' +
+      '<div class="err" id="err"></div>' +
+      '<button class="main" id="go" type="button">登録する</button>';
+  }
+  function bindForm() {
+    var go = document.getElementById('go'), err = document.getElementById('err');
+    go.addEventListener('click', function () {
+      err.style.display = 'none';
+      var name = document.getElementById('nm').value, code = document.getElementById('cd').value;
+      if (!name.trim() || !code.trim()) { err.textContent = 'お名前と合言葉を入力してください。'; err.style.display = 'block'; return; }
+      go.disabled = true; go.textContent = '確認しています…';
+      call({ action: 'register', name: name, code: code }).then(function (r) {
+        if (r.ok && r.registered) { renderMember(r); window.scrollTo(0, 0); return; }
+        err.textContent = r.error || '登録できませんでした。'; err.style.display = 'block';
+        go.disabled = false; go.textContent = '登録する';
+      }).catch(function () {
+        err.textContent = '通信できませんでした。電波のよい場所で、もう一度お試しください。'; err.style.display = 'block';
+        go.disabled = false; go.textContent = '登録する';
       });
-    }).catch(function (e) {
-      box.textContent = 'エラー: ' + e;
     });
-  </script>
+  }
+
+  /* ---- 会員画面 ---- */
+  function renderMember(r) {
+    var html = '<h1>' + esc(r.name) + ' さん</h1>';
+    html += '<p class="lead">ようこそ。参加した回の資料をご覧いただけます。</p>';
+    if (r.groups && r.groups.length) {
+      html += '<div class="chips">' + r.groups.map(function (g) { return '<span class="chip">' + esc(g) + '</span>'; }).join('') + '</div>';
+    }
+    if (r.admin) html += '<p class="hint" style="text-align:center">（管理者表示：すべての項目が見えています）</p>';
+    var items = r.items || [];
+    if (!items.length) {
+      html += '<div class="card center">いまのところ、表示できる資料はありません。<br>追加されるまで、しばらくお待ちください。</div>';
+    } else {
+      var order = [], by = {};
+      items.forEach(function (it) { if (!by[it.type]) { by[it.type] = []; order.push(it.type); } by[it.type].push(it); });
+      order.forEach(function (t) {
+        html += '<div class="sec">' + (ICONS[t] || '📌') + ' ' + esc(t) + '</div>';
+        by[t].forEach(function (it) {
+          html += '<a class="item" href="' + esc(safeUrl(it.url)) + '" target="_blank" rel="noopener">' +
+            '<span class="ico">' + (ICONS[t] || '📌') + '</span>' +
+            '<span class="txt"><b>' + esc(it.title) + '</b>' +
+            (it.desc ? '<small>' + esc(it.desc) + '</small>' : '') +
+            (it.target ? '<small class="tg">対象：' + esc(it.target) + '</small>' : '') +
+            '</span><span class="arrow">›</span></a>';
+        });
+      });
+    }
+    html += '<details class="more"><summary>別の回の合言葉を追加する</summary><div class="inner">' + formHtml() + '</div></details>';
+    app.innerHTML = html;
+    var nm = document.getElementById('nm'); if (nm) nm.value = r.name === '管理者' ? '' : r.name;
+    bindForm();
+  }
+
+  /* ---- 起動 ---- */
+  liff.init({ liffId: LIFF_ID }).then(function () {
+    if (!liff.isLoggedIn()) { liff.login(); return; }
+    idToken = liff.getIDToken();
+    if (!/^https?:/.test(GAS_URL)) { showError('設定中です（GASのURL未設定）'); return; }
+    return call({ action: 'status' }).then(function (r) {
+      if (!r.ok) { showError(r.error || '読み込めませんでした。'); return; }
+      if (r.registered) renderMember(r); else renderRegister();
+    });
+  }).catch(function (e) { showError('読み込めませんでした。LINEから開き直してください。'); });
+</script>
 </body>
 </html>
