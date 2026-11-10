@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>定点観察アンケート｜御薗NBR研究会</title>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<style>
+:root { --green-dark:#14532d; --green:#16a34a; --green-bg:#eafbf1; --gray:#1f2937; --line:#e3dfd6; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  background:#fff linear-gradient(180deg,#eafbf1 0%,#fff 260px) no-repeat; min-height:100vh; color:var(--gray); padding:16px 16px 120px; }
+.container { max-width:560px; margin:0 auto; }
+.back { display:inline-block; font-size:15px; font-weight:bold; color:var(--green-dark); text-decoration:none; padding:6px 4px; }
+h1 { font-size:21px; line-height:1.5; color:var(--green-dark); margin:6px 0 4px; text-wrap:balance; }
+.progress { font-weight:bold; color:var(--green); font-size:14.5px; margin:0 0 12px; }
+.card { background:#fff; border-radius:18px; box-shadow:0 4px 14px rgba(22,101,52,.09); padding:16px; margin-bottom:12px; }
+.intro p { margin:0 0 10px; font-size:16px; line-height:1.9; } .intro p:last-child { margin:0; }
+.intro .em { background:var(--green-bg); border-radius:10px; padding:10px 12px; font-weight:bold; color:var(--green-dark); }
+label.f { display:block; font-size:13.5px; color:#6b7280; margin:0 0 4px; font-weight:bold; }
+.row { margin-bottom:12px; } .row:last-child { margin-bottom:0; }
+input[type=text], select, textarea { width:100%; padding:11px 10px; border:2px solid #bbf7d0; border-radius:10px; font:inherit; font-size:16px; background:#fff; color:var(--gray); }
+textarea { min-height:96px; resize:vertical; line-height:1.7; }
+.st h2 { font-size:18px; margin:0 0 6px; color:var(--green-dark); line-height:1.5; }
+.st h2 .n { display:inline-block; min-width:30px; height:30px; line-height:30px; text-align:center; background:var(--green); color:#fff; border-radius:999px; font-size:15px; margin-right:8px; padding:0 4px; }
+.st .how { margin:0 0 10px; font-size:15.5px; line-height:1.85; }
+.note { font-size:13px; color:#6b7280; line-height:1.75; background:#f9fafb; border-radius:10px; padding:8px 12px; margin:0 0 10px; }
+.q { font-weight:bold; font-size:15.5px; line-height:1.7; margin:12px 0 4px; }
+.q small { font-weight:normal; color:#6b7280; font-size:13px; }
+.opts { display:grid; gap:8px; margin-bottom:6px; }
+.opt { display:flex; gap:10px; text-align:left; width:100%; padding:11px 12px; border:2px solid var(--line); border-radius:12px; background:#fff; font:inherit; font-size:15px; line-height:1.65; color:var(--gray); }
+.opt i { font-style:normal; flex:0 0 24px; height:24px; line-height:24px; text-align:center; border-radius:999px; background:#f3f4f6; font-weight:bold; font-size:13px; margin-top:1px; }
+.opt.multi i { border-radius:6px; }
+.opt .t { flex:1; } .opt .t small { display:block; font-weight:normal; color:#6b7280; font-size:12.5px; line-height:1.6; }
+.opt.sel { background:var(--green-bg); border-color:var(--green); font-weight:bold; color:var(--green-dark); }
+.opt.sel i { background:var(--green); color:#fff; }
+.opt.multi.sel i::after { content:"✓"; }
+.opt.multi.sel i { font-size:0; } .opt.multi.sel i::after { font-size:14px; }
+.other { margin:2px 0 10px; }
+details.more { border:2px solid #bbf7d0; border-radius:12px; margin:10px 0 4px; }
+details.more summary { cursor:pointer; padding:11px 12px; font-weight:bold; color:var(--green-dark); font-size:15px; }
+details.more .opts { padding:0 10px 10px; }
+.site { border:2px solid #bbf7d0; border-radius:16px; padding:12px 12px 6px; margin:0 0 12px; background:#fcfffd; }
+.site h3 { margin:0 0 8px; font-size:17px; color:var(--green-dark); }
+.site h3 span { display:inline-block; background:var(--green); color:#fff; font-size:12.5px; border-radius:999px; padding:2px 10px; margin-right:8px; vertical-align:2px; }
+.ta label.f { font-size:14.5px; color:var(--gray); line-height:1.7; margin-bottom:6px; }
+#msg { min-height:1.4em; font-size:15px; margin-top:10px; line-height:1.6; }
+.bar { position:fixed; left:0; right:0; bottom:0; background:rgba(255,255,255,.96); border-top:1px solid var(--line); }
+.bar .in { max-width:560px; margin:0 auto; padding:12px 16px; }
+.bar button, .btn { width:100%; padding:14px; border-radius:12px; border:0; background:var(--green); color:#fff; font:inherit; font-size:17px; font-weight:bold; }
+.bar button:disabled { opacity:.55; }
+.done { text-align:center; line-height:1.9; }
+.done h2 { color:var(--green-dark); font-size:20px; margin:0 0 8px; }
+.center { text-align:center; padding:30px 10px; line-height:1.9; }
+.closing { background:var(--green-bg); border-radius:12px; padding:12px 14px; color:var(--green-dark); font-weight:bold; line-height:1.9; font-size:15.5px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="./">← 研究会のページへ戻る</a>
+  <div id="app"><div class="center">読み込み中です…</div></div>
+</div>
+<div class="bar" id="bar" style="display:none"><div class="in"><button type="button" id="sendBtn">送信する</button></div></div>
+
+<script>
+  var LIFF_ID = '2012344350-UrAuPXOV';
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbxkdezeZ6jp7Rox44fJGwke6skkPlQ7E42G9KMdborNcSTQtoxfu8T-QsjUvklixDFI1A/exec';
+
+  var SITES = [
+    ['肩上部', '首の付け根から肩先までの上面'],
+    ['脊柱の際', '背骨のすぐ外側'],
+    ['背部の一行線', '講師が示した位置'],
+    ['背部の二行線', '講師が示した位置'],
+    ['背部の三行線', '講師が示した位置'],
+    ['胸部', '胸骨周囲・胸の上部・外側など、指定した場所'],
+    ['仙骨部', '仙骨の中央・左右など、指定した場所'],
+    ['後頭部の下', '頭と首の境目の左右'],
+    ['肩甲骨の内側', '肩甲骨と背骨の間'],
+    ['肩甲骨の下', '下端付近の左右'],
+    ['鎖骨の下', '胸の上部の左右'],
+    ['胸郭の側面', '体の横、肋骨のある部分'],
+    ['腹部', 'へその左右など、指定した場所'],
+    ['骨盤の上縁', '腰骨の上の左右'],
+    ['臀部', 'お尻の上部の左右'],
+    ['大腿部', '太ももの前面または外側'],
+    ['下腿部', 'すねの外側、またはふくらはぎ']
+  ];
+  var BASE = 7, OTHER_SITE = 17;
+  var LR = ['左', '右', '中央', '左右（両側を比べた）'];
+  var Q2 = ['同じ高さの左右', '同じ場所の、条件を変える前と後', '同じ場所で、接触の深さを変えたとき', '同じ場所を、時間を置いて確認したとき', '比較対象を明確に決められなかった'];
+  var Q3 = ['目印を使い、ほぼ同じ位置に戻れた', '少し探し直して戻れた', '戻るたびに位置が変わった', '同じ位置かどうか分からなかった', '今回は確認し直していない'];
+  var Q4 = ['位置も力加減も、おおむね維持できた', '位置は保てたが、力加減が変わった', '力加減は保てたが、位置や方向が変わった', '止める・維持することが難しかった', '維持できたか分からなかった'];
+  var Q5 = ['明確な違いを感じた', '僅かな違いを感じた', '明確な違いは感じなかった', '確かめる途中で変化し、決められなかった', '分からなかった・比較できなかった'];
+  var Q6 = ['硬さ・柔らかさ', '張り・突っ張り', '皮膚の動きや滑り', '抵抗感・動かしやすさ', '温かさ・冷たさ', '呼吸に伴う動き', '筋力検査で感じる反応', '違いを言葉にできなかった', '違いは分からなかった', 'その他'];
+  var Q6_OTHER = 9;
+  var Q7 = ['おおむね同じ感じ方だった', '一部は同じだったが、変わったところもあった', '最初とは違う感じ方だった', '条件をそろえられず、比較できなかった', '分からなかった・確認していない'];
+  var Q8 = ['観察する位置を決めること', '左右で高さや位置をそろえること', '同じ場所に戻ること', '軽い力加減を維持すること', '観察する対象やイメージを保つこと', '前の感覚を覚えて比較すること', '分からないまま保留すること', '特に難しいことはなかった'];
+
+  var idToken = '', info = null, S = null, DKEY = 'nbr_fixed_draft_v1';
+  var app = document.getElementById('app');
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+  function call(p) {
+    p.idToken = idToken;
+    return fetch(GAS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(p) }).then(function (r) { return r.json(); });
+  }
+  function msg(t, ok) { var m = $('msg'); if (m) { m.textContent = t; m.style.color = ok ? '#15803d' : '#c0603d'; } }
+  function showError(m) { app.innerHTML = '<div class="card center">' + esc(m) + '<br><br><a class="back" href="./">← 研究会のページへ戻る</a></div>'; $('bar').style.display = 'none'; }
+
+  /* ---- 状態 ---- */
+  function newSite() { return { lr: null, mark: '', q3: null, q4: null, q5: null, q6: [], q6o: '', q7: null }; }
+  function newState() { return { name: info.name || '', times: '', sites: [], otherSite: '', per: {}, q2: null, q8: [], q9: '', q10: '' }; }
+  function saveDraft() { try { S.name = $('nm') ? $('nm').value : S.name; localStorage.setItem(DKEY, JSON.stringify(S)); } catch (e) {} }
+  function loadDraft() { try { return JSON.parse(localStorage.getItem(DKEY) || 'null'); } catch (e) { return null; } }
+  function clearDraft() { try { localStorage.removeItem(DKEY); } catch (e) {} }
+  function siteName(id) { return id === OTHER_SITE ? ('その他：' + (S.otherSite || '（未入力）')) : SITES[id][0]; }
+
+  /* ---- 部品 ---- */
+  function optBtn(kind, group, k, label, sel, sub) {
+    return '<button type="button" class="opt ' + kind + (sel ? ' sel' : '') + '" data-g="' + group + '" data-k="' + k + '"><i>' + (kind === 'multi' ? '' : (k + 1)) + '</i><span class="t">' + esc(label) + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span></button>';
+  }
+  function single(group, list, cur) { return '<div class="opts">' + list.map(function (c, k) { return optBtn('single', group, k, c, cur === k); }).join('') + '</div>'; }
+  function multi(group, list, curArr) { return '<div class="opts">' + list.map(function (c, k) { return optBtn('multi', group, k, c, curArr.indexOf(k) >= 0); }).join('') + '</div>'; }
+
+  function sitesPicker() {
+    var h = '<div class="opts">' + SITES.slice(0, BASE).map(function (s, k) { return optBtn('multi', 'site', k, s[0], S.sites.indexOf(k) >= 0, s[1]); }).join('') + '</div>';
+    var extraOpen = S.sites.some(function (k) { return k >= BASE; });
+    h += '<details class="more"' + (extraOpen ? ' open' : '') + '><summary>追加する観察部位の候補（タップで開く）</summary><div class="opts">' +
+      SITES.slice(BASE).map(function (s, i) { var k = BASE + i; return optBtn('multi', 'site', k, s[0], S.sites.indexOf(k) >= 0, s[1]); }).join('') +
+      optBtn('multi', 'site', OTHER_SITE, 'その他（自由に書く）', S.sites.indexOf(OTHER_SITE) >= 0) + '</div></details>';
+    h += '<div class="other" id="otherSiteBox" style="' + (S.sites.indexOf(OTHER_SITE) >= 0 ? '' : 'display:none') + '"><label class="f" for="os">その他の観察部位</label><input type="text" id="os" maxlength="40" value="' + esc(S.otherSite) + '"></div>';
+    return h;
+  }
+
+  function siteCards() {
+    if (!S.sites.length) return '<div class="note">「1．今回の観察部位」で場所を選ぶと、ここに部位ごとの設問が出ます。</div>';
+    return S.sites.slice().sort(function (a, b) { return a - b; }).map(function (id, idx) {
+      var p = S.per[id] || (S.per[id] = newSite());
+      var h = '<div class="site" data-s="' + id + '"><h3><span>部位 ' + (idx + 1) + '</span>' + esc(siteName(id)) + '</h3>';
+      h += '<div class="q">問1　場所を具体的に記録してください。</div>';
+      h += '<label class="f">左・右・中央</label><div class="opts">' + LR.map(function (c, k) { return optBtn('single', 'lr', k, c, p.lr === k); }).join('') + '</div>';
+      h += '<div class="row"><label class="f" for="mk' + id + '">高さや目印（例：肩甲骨の中央の高さ）</label><input type="text" id="mk' + id + '" data-f="mark" maxlength="100" value="' + esc(p.mark) + '"></div>';
+      h += '<div class="q">問3　決めた位置に、もう一度戻れましたか。<small>〈一つ選択〉</small></div>' + single('q3', Q3, p.q3);
+      h += '<div class="q">問4　その位置で止め、条件を維持できましたか。<small>〈一つ選択〉</small></div>' + single('q4', Q4, p.q4);
+      h += '<div class="q">問5　比較して、どう感じましたか。<small>〈一つ選択〉</small></div>' + single('q5', Q5, p.q5);
+      h += '<div class="q">問6　どのような違いを感じましたか。<small>〈複数選択可〉</small></div>' + multi('q6', Q6, p.q6);
+      h += '<div class="other" style="' + (p.q6.indexOf(Q6_OTHER) >= 0 ? '' : 'display:none') + '"><label class="f" for="o6' + id + '">その他の違い</label><input type="text" id="o6' + id + '" data-f="q6o" maxlength="100" value="' + esc(p.q6o) + '"></div>';
+      h += '<div class="note">違いを感じても、すぐに正常・異常や、その原因を決めずに記録します。</div>';
+      h += '<div class="q">問7　同じ条件でもう一度確かめると、どうでしたか。<small>〈一つ選択〉</small></div>' + single('q7', Q7, p.q7);
+      return h + '</div>';
+    }).join('');
+  }
+
+  function progress() {
+    var n = S.sites.length, done = 0;
+    S.sites.forEach(function (id) { var p = S.per[id]; if (p && p.lr !== null && p.q3 !== null && p.q4 !== null && p.q5 !== null && p.q6.length && p.q7 !== null) done++; });
+    $('progress').textContent = n ? ('観察部位 ' + n + ' か所のうち、' + done + ' か所を回答済み') : 'まず、観察した部位を選んでください';
+  }
+
+  function render() {
+    var h = '<h1>定点観察アンケート――観察部位で何を感じたか</h1><div class="progress" id="progress"></div>';
+    h += '<div class="card intro"><p>この練習では、観察する場所を決め、左右や条件を変える前後の感じ方を比較します。</p>' +
+      '<p class="em">「わからない」は間違いではありません。感じたことと、位置や条件を保てたかを分けて記録してください。</p></div>';
+    h += '<div class="card"><div class="row"><label class="f" for="nm">受講者名・番号</label><input type="text" id="nm" maxlength="60" value="' + esc(S.name) + '"></div>' +
+      '<div class="row"><label class="f" for="grp">回</label><select id="grp">' +
+      (info.groups.length ? info.groups.map(function (g) { return '<option' + (g === S.group ? ' selected' : '') + '>' + esc(g) + '</option>'; }).join('') : '<option>（管理者）</option>') + '</select></div>' +
+      '<div class="row"><label class="f" for="tm">実施回数</label><input type="text" id="tm" maxlength="30" placeholder="例：1回目" value="' + esc(S.times) + '"></div></div>';
+    h += '<div class="card st"><h2><span class="n">1</span>今回の観察部位</h2><p class="how">今回観察した場所を選んでください。〈複数選択可〉</p>' +
+      sitesPicker() +
+      '<div class="note">※ 一行線・二行線・三行線は、呼び方だけで位置を決めず、実技や図で位置を共有してから始めます。<br>※ 背部では高さもそろえます。「肩甲骨の中央の高さ」など、目印を決めてください。<br>すべてを一度に行う必要はありません。今回は少数の場所を選び、位置をそろえる練習を優先します。接触部位は相手に説明して了承を得て、強く押さずに行います。</div></div>';
+    h += '<div class="card st"><h2><span class="n">2</span>比較の内容</h2><div class="q" style="margin-top:0">問2　何と何を比較しましたか。<small>〈一つ選択〉</small></div>' + single('q2', Q2, S.q2) + '</div>';
+    h += '<div class="card st"><h2><span class="n">3</span>観察部位ごとの記録</h2><p class="how">問1・問3〜7は、選んだ部位ごとに答えてください。</p><div id="sites">' + siteCards() + '</div></div>';
+    h += '<div class="card st"><h2><span class="n">4</span>振り返り</h2>' +
+      '<div class="q" style="margin-top:0">問8　今回、難しかったことを選んでください。<small>〈複数選択可〉</small></div>' + multi('q8', Q8, S.q8) +
+      '<div class="ta row"><label class="f" for="q9">問9　比較しやすかった場所はどこですか。<small>（自由記述）</small></label><textarea id="q9">' + esc(S.q9) + '</textarea></div>' +
+      '<div class="ta row"><label class="f" for="q10">問10　分からなかった場所と、次に確かめたいことを書いてください。<small>（自由記述）</small></label><textarea id="q10">' + esc(S.q10) + '</textarea></div></div>';
+    h += '<div class="card"><div class="closing">定点とは、毎回同じ答えが出る場所ではありません。<br>同じ場所に戻り、変わったことも、変わらなかったことも確かめるための目印です。</div><div id="msg"></div></div>';
+    app.innerHTML = h;
+    $('bar').style.display = 'block';
+    progress(); bind();
+  }
+
+  var bound = false;
+  function bind() {
+    if (bound) return; bound = true;
+    app.addEventListener('click', function (e) {
+      var b = e.target.closest('.opt'); if (!b) return;
+      var g = b.dataset.g, k = +b.dataset.k, sd = b.closest('.site'), p = sd ? (S.per[+sd.dataset.s] || (S.per[+sd.dataset.s] = newSite())) : null;
+      if (g === 'site') {
+        var i = S.sites.indexOf(k);
+        if (i >= 0) S.sites.splice(i, 1); else S.sites.push(k);
+        b.classList.toggle('sel', i < 0);
+        $('otherSiteBox').style.display = S.sites.indexOf(OTHER_SITE) >= 0 ? '' : 'none';
+        $('sites').innerHTML = siteCards();
+      } else if (g === 'q2') { S.q2 = S.q2 === k ? null : k; repaint(b, [S.q2], false); }
+      else if (g === 'q8') { toggle(S.q8, k); b.classList.toggle('sel'); }
+      else if (p) {
+        if (g === 'q6') { toggle(p.q6, k); b.classList.toggle('sel'); sd.querySelector('.other').style.display = p.q6.indexOf(Q6_OTHER) >= 0 ? '' : 'none'; }
+        else { p[g] = p[g] === k ? null : k; repaint(b, [p[g]], false); }
+      }
+      progress(); saveDraft();
+    });
+    app.addEventListener('input', function (e) {
+      var t = e.target;
+      if (t.id === 'os') S.otherSite = t.value;
+      else if (t.id === 'tm') S.times = t.value;
+      else if (t.id === 'q9') S.q9 = t.value;
+      else if (t.id === 'q10') S.q10 = t.value;
+      else if (t.dataset && t.dataset.f) { var sd = t.closest('.site'); if (sd) S.per[+sd.dataset.s][t.dataset.f] = t.value; }
+      saveDraft();
+    });
+    app.addEventListener('change', function (e) { if (e.target.id === 'grp') S.group = e.target.value; saveDraft(); });
+    $('sendBtn').onclick = send;
+  }
+  function toggle(arr, k) { var i = arr.indexOf(k); if (i >= 0) arr.splice(i, 1); else arr.push(k); }
+  function repaint(btn, sel) { btn.parentElement.querySelectorAll('.opt').forEach(function (o) { o.classList.toggle('sel', sel[0] !== null && +o.dataset.k === sel[0]); }); }
+
+  function send() {
+    S.name = $('nm').value; S.times = $('tm').value; S.group = $('grp').value;
+    var nm = S.name.trim();
+    if (!nm) return msg('受講者名・番号を入力してください');
+    if (!S.sites.length) return msg('「1．今回の観察部位」を、1つ以上選んでください');
+    if (S.sites.indexOf(OTHER_SITE) >= 0 && !S.otherSite.trim()) return msg('「その他」の観察部位を入力してください');
+    if (S.q2 === null) return msg('問2（何と何を比較したか）を選んでください');
+    var ids = S.sites.slice().sort(function (a, b) { return a - b; }), sites = [];
+    for (var i = 0; i < ids.length; i++) {
+      var id = ids[i], p = S.per[id] || newSite(), nmS = siteName(id);
+      if (p.lr === null) return msg('「' + nmS + '」：問1の「左・右・中央」を選んでください');
+      if (p.q3 === null) return msg('「' + nmS + '」：問3を選んでください');
+      if (p.q4 === null) return msg('「' + nmS + '」：問4を選んでください');
+      if (p.q5 === null) return msg('「' + nmS + '」：問5を選んでください');
+      if (!p.q6.length) return msg('「' + nmS + '」：問6を1つ以上選んでください');
+      if (p.q6.indexOf(Q6_OTHER) >= 0 && !p.q6o.trim()) return msg('「' + nmS + '」：問6の「その他」を入力してください');
+      if (p.q7 === null) return msg('「' + nmS + '」：問7を選んでください');
+      sites.push({ id: id, other: id === OTHER_SITE ? S.otherSite.trim() : '', lr: p.lr, mark: p.mark.trim(), q3: p.q3, q4: p.q4, q5: p.q5, q6: p.q6.slice().sort(function (a, b) { return a - b; }), q6o: p.q6.indexOf(Q6_OTHER) >= 0 ? p.q6o.trim() : '', q7: p.q7 });
+    }
+    if (!S.q8.length) return msg('問8を1つ以上選んでください（「特に難しいことはなかった」もあります）');
+    var b = $('sendBtn'); b.disabled = true; msg('送信中…', true);
+    call({ action: 'fixedSave', name: nm, group: S.group, times: S.times.trim(), q2: S.q2, sites: sites, q8: S.q8.slice().sort(function (a, b) { return a - b; }), q9: S.q9.trim(), q10: S.q10.trim() })
+    .then(function (r) {
+      if (!r.ok) throw new Error(r.error || '送信できませんでした');
+      clearDraft(); $('bar').style.display = 'none';
+      app.innerHTML = '<div class="card done"><h2>送信しました</h2><p>ありがとうございました。<br>変わったことも、変わらなかったことも、そのまま記録できたことが大切です。</p>' +
+        '<button type="button" class="btn" id="again">もう一度入力する（別の部位・次の回数）</button><a class="back" href="./" style="margin-top:10px">← 研究会のページへ戻る</a></div>';
+      $('again').onclick = function () { start(true); window.scrollTo(0, 0); };
+      window.scrollTo(0, 0);
+    }).catch(function (e) { msg('送信に失敗しました：' + e.message); b.disabled = false; });
+  }
+
+  function start(fresh) {
+    var d = fresh ? null : loadDraft();
+    S = d && d.sites ? d : newState();
+    if (!S.per) S.per = {};
+    if (fresh) S.name = info.name || '';
+    if (!S.group || info.groups.indexOf(S.group) < 0) S.group = info.groups[0] || '（管理者）';
+    render();
+  }
+
+  liff.init({ liffId: LIFF_ID }).then(function () {
+    if (!liff.isLoggedIn()) { liff.login(); return; }
+    idToken = liff.getIDToken();
+    return call({ action: 'fixedInfo' }).then(function (r) {
+      if (!r.ok) { showError(r.error || '読み込めませんでした。'); return; }
+      info = r; start(false);
+    });
+  }).catch(function () { showError('読み込めませんでした。LINEから開き直してください。'); });
+</script>
+</body>
+</html>
