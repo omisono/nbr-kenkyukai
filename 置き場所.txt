@@ -1,0 +1,27 @@
+【GitHub（omisono/nbr-kenkyukai）への置き方】
+このフォルダの中身は、リポジトリの一番上（ルート）にそのまま入れる形になっています。
+
+ nbr-kenkyukai（リポジトリ）
+ ├─ index.html      ← 上書き（ボタンの名前が「接触の4段階アンケート」に変わります）
+ ├─ contact.html    ← 上書き（新しい4段階アンケート。図の一覧とダウンロードも入っています）
+ └─ zu/             ← 新しく作るフォルダ（図の置き場）
+     ├─ zu1_zenmen.png   図1 前面（胸から上）
+     ├─ zu2_haimen.png   図2 背面（胸から上）
+     ├─ zu3_sokuhai.png  図3 足の骨：足背側
+     └─ zu4_sokuura.png  図4 足の骨：足裏側
+
+【GitHubでの操作】
+1. リポジトリを開く → Add file → Upload files
+2. index.html と contact.html、そして zu フォルダごとドラッグ → Commit changes
+   （zuフォルダがうまく入らないときは、Add file → Create new file で名前欄に「zu/」と打ってから、
+    画像4枚を Upload files で入れてもOKです）
+
+【GAS（Code.gs）】
+研究会のGASに Code.gs を全部貼り替え → 保存 → デプロイ → デプロイを管理 → 鉛筆 → 新バージョン → デプロイ
+（URLは変わりません。回答は「接触4段階アンケート」シートに自動で作られます）
+
+【あとから図を増やすとき】
+1. zu フォルダに画像（例：zu5_xxx.png）を入れる
+2. contact.html の中の ZU = [ ... ] に1行足す：
+   { n: '図5', t: '図の名前', f: 'zu/zu5_xxx.png' },
+   （これで一覧・拡大・ダウンロード・人体図の「図」選択肢にも出ます）
