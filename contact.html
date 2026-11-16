@@ -223,9 +223,9 @@ var IMGS = {"p1": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUEBA
 
   /* ---- 図（アンケートの下に、まとめて表示） ---- */
   function renderZu() {
-    var h = '<div class="sub2">人体図・足の骨の図</div><p class="note">タップで拡大できます。「ダウンロード」で画像を保存できます（LINEの中で保存できないときは、拡大して画像を長押ししてください）。</p><div class="zu">';
+    var h = '<div class="sub2">人体図・足の骨の図</div><p class="note">タップで拡大できます。「ダウンロード」を押すと、外部のブラウザで画像が開きます。そこで保存してください（保存できないときは、画像を長押ししてください）。</p><div class="zu">';
     ZU.forEach(function (z) {
-      h += '<div class="it"><img src="' + esc(z.f) + '" alt="' + esc(z.n + ' ' + z.t) + '" data-zf="' + esc(z.f) + '"><div class="cap">' + esc(z.n) + '　' + esc(z.t) + '</div>' +
+      h += '<div class="it"><img src="' + esc(z.f) + '" alt="' + esc(z.n + ' ' + z.t) + '" data-zf="' + esc(z.f) + '" onerror="this.outerHTML=\'<div class=note style=margin:8px>画像が読み込めません：\'+this.getAttribute(\'data-zf\')+\'</div>\'"><div class="cap">' + esc(z.n) + '　' + esc(z.t) + '</div>' +
         '<div class="act"><button type="button" data-zf="' + esc(z.f) + '">拡大して見る</button><a class="dl" href="' + esc(z.f) + '" download="' + esc(z.f.split('/').pop()) + '">ダウンロード</a></div></div>';
     });
     $('zuBox').innerHTML = h + '</div>';
@@ -260,7 +260,14 @@ var IMGS = {"p1": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUEBA
       saveDraft();
     }
     app.addEventListener('input', onInput); app.addEventListener('change', onInput);
-    $('zuBox').addEventListener('click', function (e) { var z = e.target.closest('[data-zf]'); if (z) openZoom(z.dataset.zf); });
+    $('zuBox').addEventListener('click', function (e) {
+      var a = e.target.closest('a.dl');
+      if (a) {
+        try { if (liff.isInClient()) { e.preventDefault(); liff.openWindow({ url: a.href, external: true }); } } catch (x) {}
+        return;
+      }
+      var z = e.target.closest('[data-zf]'); if (z) openZoom(z.dataset.zf);
+    });
     $('zoom').onclick = function (e) { if (e.target.tagName !== 'IMG') { this.style.display = 'none'; document.body.style.overflow = ''; } };
     $('sendBtn').onclick = send;
   }
