@@ -52,6 +52,8 @@ textarea { min-height:96px; resize:vertical; line-height:1.7; }
 .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .ytl{display:block;text-align:center;text-decoration:none;font-weight:bold;color:var(--green-dark);border:2px solid #bbf7d0;border-radius:12px;padding:11px;margin:0 0 6px;background:#fff}
 .think{background:#fff7ed;border:2px solid #fdba74;border-radius:14px;padding:12px 14px;margin:10px 0;font-weight:bold;color:#9a3412;line-height:1.8}
+.sh{font-weight:bold;color:#166534;background:#f0fdf4;border-radius:8px;padding:5px 10px;margin:14px 0 6px}
+.sl{margin:0;padding-left:1.3em;line-height:1.85;font-size:15.5px}.sl li{margin:2px 0}.sl li.sub{list-style:none;margin-left:-1.3em;padding-left:.6em}.sl li.sub>b{color:#0f766e;display:block;margin:6px 0 2px}.sl li.sub>.sl{margin-left:.2em}
 .memo{white-space:pre-line;line-height:1.95;font-size:15.5px}
 </style>
 </head>
@@ -75,7 +77,18 @@ textarea { min-height:96px; resize:vertical; line-height:1.7; }
       '<div class="think">なぜ、足首への刺激で膝じゃないのかを、皆さん考えてください。</div>' +
       '</div>' +
       '<div class="card"><h2 style="font-size:17px;margin:0 0 8px;color:#166534">動画の中での所見（メモ）</h2><div class="memo">' +
-      MEMO.map(function (s) { return s === '' ? '<br>' : esc(s) + '\n'; }).join('') + '</div></div>';
+      MEMO.map(function (s) { return s === '' ? '<br>' : esc(s) + '\n'; }).join('') + '</div></div>' + soapHtml();
+  }
+  var SOAP = [["S", ["左足を動かしたときに、足首〜足部の違和感がある様子。", "左足の足裏側に腫れ感があり、特に踵周辺、内側に腫れが強い。", "膝そのものは痛くないが、膝の内側を押さえると少し痛みがある。", "アキレス腱にも少し違和感があり、後ろ側・内側寄りを押すと響く。", "施術前は足が重たい感じがあり、「機能していない」ような足の感じがあった。", "肩は大丈夫とのこと。"]], ["O", [["左足", ["距骨前外側あたりに異常感。", "後内側から踵にかけて腫れが強い。", "外側にも反応はあるが、内側の踵の腫れが目立つ。", "中間楔状骨〜舟状骨の外側あたりに反応。", "第2趾に反応。", "第5趾外側に反応。", "第2趾外側に反応。", "母趾の末節骨に反応。", "足裏側に少し腫れ感。", "膝内側は、押圧で軽い痛み。", "アキレス腱の後ろ側に反応。", "アキレス腱の内側が張る。", "アキレス腱内側の後ろ側に深い反応。", "距踵舟関節あたり、内側に反応。", "踵周辺の反応。"]], ["右足", ["左足と比較して、右足の方が少し重たい程度の感じ。", "右は股関節あたりに関連。", "股関節の外側に反応。", "股関節の内側から内側部に反応。", "腸骨あたりから坐骨の外側・内側部に反応。"]], ["連動部位", ["足の状態は腰との関係がある。", "後ろ側、首のあたりとも関係する。", "肩も含めて全体が連動している。"]]]], ["東洋医学的所見", ["今回の会話内では、明確な東洋医学用語・独自用語による反応の記載はなし。"]], ["A", ["左足は、距骨前外側、踵の後内側〜内側、距踵舟関節内側、中間楔状骨〜舟状骨外側、アキレス腱内側後方に反応が集中しており、足部内側縦アーチ周辺〜踵内側、アキレス腱内側の負担が強い状態と考えられる。", "第2趾外側、第5趾外側、母趾末節骨にも反応があり、足趾〜足裏の支持バランスの乱れが関与している可能性がある。", "膝内側の圧痛はあるが、主訴としての膝痛はなく、足部・アキレス腱・踵の影響が膝内側に波及している所見と考えられる。", "右側は股関節外側、股関節内側〜内側部、腸骨から坐骨の外側・内側部に反応があり、左右の足の重さや機能差に骨盤・股関節周辺の影響が関係している可能性がある。", "足部の重さや機能低下は、腰、後面、首周辺とも連動していると術者は評価している。"]], ["P", [["左足の調整", ["内側、踵周辺、距踵舟関節内側を調整。", "中間楔状骨周辺を調整。", "第2趾外側、第5趾外側を調整。", "アキレス腱の内側後方の深い反応を調整。", "足裏の腫れ感に対して調整。"]], ["右側の調整", ["右股関節外側を調整。", "右股関節の内側から内側部を調整。", "腸骨周辺から坐骨の外側・内側部を調整。"]], ["施術後の変化", ["左足の腫れ感がかなり減少。", "左足内側がかなり柔らかくなった。", "足裏の腫れ感もかなり少なくなった。", "距踵舟関節内側あたりの反応が消失。", "足裏がだいぶ柔らかくなった。", "左右の足を比較して、柔らかさの違いが明確になり、左足は改善。", "再度足を上げた際、左右とも変化があり、患者にも違いが分かる状態になった。", "足の重さが軽減し、機能していなかったような足の感じが改善した。"]]]]];
+  function ul(items) {
+    return '<ul class="sl">' + items.map(function (x) {
+      return typeof x === 'string' ? '<li>' + esc(x) + '</li>' : '<li class="sub"><b>' + esc(x[0]) + '</b>' + ul(x[1]) + '</li>';
+    }).join('') + '</ul>';
+  }
+  function soapHtml() {
+    return '<div class="card"><h2 style="font-size:17px;margin:0 0 4px;color:#166534">施術の記録（SOAP）</h2>' +
+      '<p class="note">PLAUD NOTE による要約です。</p>' +
+      SOAP.map(function (s) { return '<div class="sh">' + esc(s[0]) + (s[0].length === 1 ? '：' : '') + '</div>' + ul(s[1]); }).join('') + '</div>';
   }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
   var MEMO = [
