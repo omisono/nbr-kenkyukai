@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>背中の見方｜御薗NBR研究会</title>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<style>
+:root { --green-dark:#14532d; --green:#16a34a; --green-bg:#eafbf1; --gray:#1f2937; --line:#e3dfd6; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  background:#fff linear-gradient(180deg,#eafbf1 0%,#fff 260px) no-repeat; min-height:100vh; color:var(--gray); padding:16px 16px 120px; }
+.container { max-width:560px; margin:0 auto; }
+.back { display:inline-block; font-size:15px; font-weight:bold; color:var(--green-dark); text-decoration:none; padding:6px 4px; }
+h1 { font-size:21px; line-height:1.5; color:var(--green-dark); margin:6px 0 4px; text-wrap:balance; }
+.progress { font-weight:bold; color:var(--green); font-size:14.5px; margin:0 0 12px; }
+.card { background:#fff; border-radius:18px; box-shadow:0 4px 14px rgba(22,101,52,.09); padding:16px; margin-bottom:12px; }
+.intro p { margin:0 0 10px; font-size:16px; line-height:1.9; } .intro p:last-child { margin:0; }
+.intro .em { background:var(--green-bg); border-radius:10px; padding:10px 12px; font-weight:bold; color:var(--green-dark); }
+label.f { display:block; font-size:13.5px; color:#6b7280; margin:0 0 4px; font-weight:bold; }
+.row { margin-bottom:12px; } .row:last-child { margin-bottom:0; }
+input[type=text], select, textarea { width:100%; padding:11px 10px; border:2px solid #bbf7d0; border-radius:10px; font:inherit; font-size:16px; background:#fff; color:var(--gray); }
+textarea { min-height:96px; resize:vertical; line-height:1.7; }
+.st h2 { font-size:18px; margin:0 0 6px; color:var(--green-dark); line-height:1.5; }
+.st h2 .n { display:inline-block; min-width:30px; height:30px; line-height:30px; text-align:center; background:var(--green); color:#fff; border-radius:999px; font-size:15px; margin-right:8px; }
+.st .how { margin:0 0 10px; font-size:15.5px; line-height:1.85; }
+.fig { margin:0 0 12px; border:2px solid #bbf7d0; border-radius:12px; overflow:hidden; position:relative; cursor:zoom-in; background:#fff; }
+.fig img { display:block; width:100%; height:auto; }
+.fig span { position:absolute; right:8px; bottom:8px; background:rgba(20,83,45,.85); color:#fff; font-size:12px; border-radius:999px; padding:3px 10px; }
+.figcap { font-size:12.5px; color:#6b7280; margin:-6px 0 12px; line-height:1.6; }
+.q { font-weight:bold; font-size:15.5px; line-height:1.7; margin:4px 0 8px; }
+.opts { display:grid; gap:8px; margin-bottom:14px; }
+.opt { display:flex; gap:10px; text-align:left; width:100%; padding:11px 12px; border:2px solid var(--line); border-radius:12px; background:#fff; font:inherit; font-size:15px; line-height:1.65; color:var(--gray); }
+.opt i { font-style:normal; flex:0 0 24px; height:24px; line-height:24px; text-align:center; border-radius:999px; background:#f3f4f6; font-weight:bold; font-size:13px; margin-top:1px; }
+.opt.sel { background:var(--green-bg); border-color:var(--green); font-weight:bold; color:var(--green-dark); }
+.opt.sel i { background:var(--green); color:#fff; }
+.ta label.f { font-size:14.5px; color:var(--gray); line-height:1.7; margin-bottom:6px; }
+#msg { min-height:1.4em; font-size:15px; margin-top:10px; line-height:1.6; }
+.bar { position:fixed; left:0; right:0; bottom:0; background:rgba(255,255,255,.96); border-top:1px solid var(--line); }
+.bar .in { max-width:560px; margin:0 auto; padding:12px 16px; }
+.bar button, .btn { width:100%; padding:14px; border-radius:12px; border:0; background:var(--green); color:#fff; font:inherit; font-size:17px; font-weight:bold; }
+.bar button:disabled { opacity:.55; }
+.btn.sub { background:#fff; color:var(--green-dark); border:2px solid #bbf7d0; margin-top:10px; }
+.done { text-align:center; line-height:1.9; }
+.done h2 { color:var(--green-dark); font-size:20px; margin:0 0 8px; }
+.center { text-align:center; padding:30px 10px; line-height:1.9; }
+#zoom { display:none; position:fixed; inset:0; background:rgba(0,0,0,.9); z-index:50; overflow:auto; -webkit-overflow-scrolling:touch; }
+#zoom img { display:block; width:200%; max-width:none; margin:60px 0 40px; }
+#zoom .x { position:fixed; top:10px; right:12px; background:#fff; color:#111; font-weight:bold; font-size:15px; border:0; border-radius:20px; padding:9px 16px; z-index:51; }
+
+.vid{position:relative;width:100%;padding-top:56.25%;background:#000;border-radius:14px;overflow:hidden;margin:8px 0 10px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ytl{display:block;text-align:center;text-decoration:none;font-weight:bold;color:var(--green-dark);border:2px solid #bbf7d0;border-radius:12px;padding:11px;margin:0 0 6px;background:#fff}
+.think{background:#fff7ed;border:2px solid #fdba74;border-radius:14px;padding:12px 14px;margin:10px 0;font-weight:bold;color:#9a3412;line-height:1.8}
+.sh{font-weight:bold;color:#166534;background:#f0fdf4;border-radius:8px;padding:5px 10px;margin:14px 0 6px}
+.sl{margin:0;padding-left:1.3em;line-height:1.85;font-size:15.5px}.sl li{margin:2px 0}.sl li.sub{list-style:none;margin-left:-1.3em;padding-left:.6em}.sl li.sub>b{color:#0f766e;display:block;margin:6px 0 2px}.sl li.sub>.sl{margin-left:.2em}
+.memo{white-space:pre-line;line-height:1.95;font-size:15.5px}
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="./">← 研究会のページへ戻る</a>
+  <div id="app"><div class="center">読み込み中です…</div></div>
+</div>
+<script>
+  var LIFF_ID = '2012344350-UrAuPXOV';
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbxkdezeZ6jp7Rox44fJGwke6skkPlQ7E42G9KMdborNcSTQtoxfu8T-QsjUvklixDFI1A/exec';
+  var VID = 'oOyzZJBwYMc';
+  var app = document.getElementById('app');
+
+  function page() {
+    return '<h1>背中の見方</h1>' +
+      '<div class="card">' +
+      '<div class="vid"><iframe src="https://www.youtube.com/embed/' + VID + '" title="背中の見方" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>' +
+      '<a class="ytl" href="https://www.youtube.com/watch?v=' + VID + '" target="_blank" rel="noopener">▶ YouTubeで開く</a>' +
+      '</div>' + soapHtml();
+  }
+  var SOAP = [["S", ["患者は、体を動かす時に手足・肩に力が入りやすく、特に肩の力が抜けにくい状態がある。", "腰を動かしたり歩いたりする時にも、常に肩に力が入っている様子。", "左右のお尻を上げようとする動きでも、実際にはお尻ではなく腰にすごく力が入りやすい。", "自分では「上がっていない感じ」がしても、実際には体に力が入っている。", "症状の背景として、自分の体に意識を向けられていないことが問題として指摘されている。"]], ["O", [["背骨周囲", ["「ここら辺」が以前から強く緊張している。", "腰を動かす時、歩く時に、常に肩に力が入ることで体幹部に緊張が出ている。"]], ["肩", ["右を上げようとすると肩に力が入りやすい。", "左を上げようとする時も、わずかな動きでも体に力が入りやすい。", "体幹を動かす際に、手足・肩の力が抜けていない。"]], ["腰", ["左右のお尻を上げようとする動作で、腰にすごく力が入っている。", "本来はお尻にわずかに力を入れる動作だが、腰で代償している。"]], ["左のお尻", ["左のお尻を少し上げようとした時、肩には力が入っていない状態に近づけられている。", "ただし、お尻には全然力が入っておらず、「入ろうともしていない」状態から、少し力を入れるような意識が必要と説明。"]], ["右側の動き", ["右も上がるが、上げようとすると力が入りやすい。"]], ["左側の動き", ["左を上げようとしても、上がるか上がらないかわからない程度、上がっていない感じで行う必要がある。"]], ["体幹・背部周囲", ["右・左をわずかに上げようとしてやめる動作を繰り返すと、「ここら辺」がだいぶ柔らかくなってくると説明。"]]]], ["東洋医学的所見", ["明確な東洋医学用語、治本法、水穀海、血海などの所見は言及なし。", "体への意識を向けることが、食生活・生活環境・環境調整の効果を出す前提として説明されている。"]], ["A", ["体幹や腰を動かす際に、手足・肩へ過剰に力が入り、肩周囲から背骨周囲に慢性的な緊張が生じている状態。", "お尻を使うべき動作で腰に力が入りやすく、左のお尻・右のお尻ともに局所へ適切に意識と力を向けにくい。", "自分の体への意識が薄く、動作時に必要以上の力みや代償動作が起こっていると考えられる。", "生活環境・食生活などの影響も背景にある可能性は示されたが、まずは身体感覚への注意を高めることが重要と判断されている。"]], ["P", ["手足・肩の力を抜くことを指導。", "右を少し上げようとして、実際には大きく上げずにやめる動作を指導。", "左を少し上げようとして、上がるか上がらないかわからない程度でやめる動作を指導。", "左のお尻を少し上げようとして、肩に力を入れず、だらっと力を抜いた状態から、わずかに力を入れるような意識を持つ練習を実施。", "「筋トレではなく、意識を集中させる運動」として、自分の体に注意を向ける練習を説明。", "座っている仕事中にも、左右のお尻を「ちょっと上げようかな、やめる」という程度で、1回か2回、時々行うよう指導。", "無理に動かすのではなく、「やろうとしてやめる」ことで体がゆるむと説明。", "施術・指導後、右・左をわずかに上げようとしてやめるだけで、背骨周囲・体幹周囲の「ここら辺」がだいぶ柔らかくなってくる変化が確認された。"]]];
+  function ul(items) {
+    return '<ul class="sl">' + items.map(function (x) {
+      return typeof x === 'string' ? '<li>' + esc(x) + '</li>' : '<li class="sub"><b>' + esc(x[0]) + '</b>' + ul(x[1]) + '</li>';
+    }).join('') + '</ul>';
+  }
+  function soapHtml() {
+    return '<div class="card"><h2 style="font-size:17px;margin:0 0 4px;color:#166534">施術の記録（SOAP）</h2>' +
+      '<p class="note">PLAUD NOTE による要約です。</p>' +
+      SOAP.map(function (s) { return '<div class="sh">' + esc(s[0]) + (s[0].length === 1 ? '：' : '') + '</div>' + ul(s[1]); }).join('') + '</div>';
+  }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+
+  function showError(m) { app.innerHTML = '<div class="card center">' + esc(m) + '<br><br><a class="back" href="./">← 研究会のページへ戻る</a></div>'; }
+  liff.init({ liffId: LIFF_ID }).then(function () {
+    if (!liff.isLoggedIn()) { liff.login(); return; }
+    return fetch(GAS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'touchInfo', idToken: liff.getIDToken() }) })
+      .then(function (r) { return r.json(); }).then(function (r) {
+        if (!r.ok) { showError(r.error || '読み込めませんでした。'); return; }
+        app.innerHTML = page();
+      });
+  }).catch(function () { showError('読み込めませんでした。LINEから開き直してください。'); });
+</script>
+</body>
+</html>
