@@ -113,6 +113,8 @@
       html += '<div class="chips">' + r.groups.map(function (g) { return '<span class="chip">' + esc(g) + '</span>'; }).join('') + '</div>';
     }
     if (r.admin) html += '<p class="hint" style="text-align:center">（管理者表示：すべての項目が見えています）</p>';
+    if (r.admin) html += '<a class="item" href="results.html" style="border-color:#0ea5e9;background:#f0f9ff"><span class="ico">📊</span>' +
+      '<span class="txt"><b>振り返りアンケートの回答を見る（管理者用）</b><small>誰がどう答えたかを、ひとりずつ・集計で見られます</small></span><span class="arrow" style="color:#0284c7">›</span></a>';
     var FIXED = [
       '<a class="item" href="shikai.html" style="border-color:#fb923c;background:#fff7ed"><span class="ico">🌊</span>' +
         '<span class="txt"><b>四海（今回のテーマ）</b><small>四海から考える身体のつながりと、NBR法の診断技術</small></span><span class="arrow" style="color:#ea580c">›</span></a>',
