@@ -113,34 +113,40 @@
       html += '<div class="chips">' + r.groups.map(function (g) { return '<span class="chip">' + esc(g) + '</span>'; }).join('') + '</div>';
     }
     if (r.admin) html += '<p class="hint" style="text-align:center">（管理者表示：すべての項目が見えています）</p>';
-    html += '<a class="item" href="shikai.html" style="border-color:#fb923c;background:#fff7ed"><span class="ico">🌊</span>' +
-      '<span class="txt"><b>四海（今回のテーマ）</b><small>四海から考える身体のつながりと、NBR法の診断技術</small></span><span class="arrow" style="color:#ea580c">›</span></a>';
-    html += '<a class="item" href="eval.html?s=skill" style="border-color:#fcd34d;background:#fffbeb"><span class="ico">📝</span>' +
-      '<span class="txt"><b>筋力検査・実技評価シート</b><small>自己評価の入力と、講師評価との比べ</small></span><span class="arrow">›</span></a>';
-    html += '<a class="item" href="contact.html" style="border-color:#86efac;background:#f0fdf4"><span class="ico">🖐</span>' +
-      '<span class="txt"><b>接触の4段階アンケート</b><small>止める・保つ・連続して動かす・イメージを加える</small></span><span class="arrow">›</span></a>';
-    html += '<a class="item" href="fixed.html" style="border-color:#7dd3fc;background:#f0f9ff"><span class="ico">📍</span>' +
-      '<span class="txt"><b>定点観察アンケート</b><small>観察する場所を決めて、何を感じたかを記録します</small></span><span class="arrow" style="color:#0284c7">›</span></a>';
-    html += '<a class="item" href="pain.html" style="border-color:#c4b5fd;background:#f5f3ff"><span class="ico">🧠</span>' +
-      '<span class="txt"><b>痛みについて</b><small>ペインマトリックスと症例（脊柱管狭窄症と、脳の警戒アラーム）</small></span><span class="arrow" style="color:#7c3aed">›</span></a>';
+    var FIXED = [
+      '<a class="item" href="shikai.html" style="border-color:#fb923c;background:#fff7ed"><span class="ico">🌊</span>' +
+        '<span class="txt"><b>四海（今回のテーマ）</b><small>四海から考える身体のつながりと、NBR法の診断技術</small></span><span class="arrow" style="color:#ea580c">›</span></a>',
+      '<a class="item" href="contact.html" style="border-color:#86efac;background:#f0fdf4"><span class="ico">🖐</span>' +
+        '<span class="txt"><b>接触の4段階アンケート</b><small>止める・保つ・連続して動かす・イメージを加える</small></span><span class="arrow">›</span></a>',
+      '<a class="item" href="pain.html" style="border-color:#c4b5fd;background:#f5f3ff"><span class="ico">🧠</span>' +
+        '<span class="txt"><b>痛みについて</b><small>ペインマトリックスと症例（脊柱管狭窄症と、脳の警戒アラーム）</small></span><span class="arrow" style="color:#7c3aed">›</span></a>',
+      '<a class="item" href="eval.html?s=skill" style="border-color:#fcd34d;background:#fffbeb"><span class="ico">📝</span>' +
+        '<span class="txt"><b>筋力検査・実技評価シート</b><small>自己評価の入力と、講師評価との比べ</small></span><span class="arrow">›</span></a>'
+    ];
+    var FIRST = ['お知らせ', '資料'];   // 先に出す種類（この順）
+    var LAST = ['動画'];                // 最後に出す種類
     var items = r.items || [];
+    var order = [], by = {};
+    items.forEach(function (it) { if (!by[it.type]) { by[it.type] = []; order.push(it.type); } by[it.type].push(it); });
+    function group(t) {
+      var h = '<div class="sec">' + (ICONS[t] || '📌') + ' ' + esc(t) + '</div>';
+      by[t].forEach(function (it) {
+        var su = safeUrl(it.url), ext = /^https?:\/\//i.test(su);
+        h += '<a class="item" href="' + esc(su) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
+          '<span class="ico">' + (ICONS[t] || '📌') + '</span>' +
+          '<span class="txt"><b>' + esc(it.title) + '</b>' +
+          (it.desc ? '<small>' + esc(it.desc) + '</small>' : '') +
+          (it.target ? '<small class="tg">対象：' + esc(it.target) + '</small>' : '') +
+          '</span><span class="arrow">›</span></a>';
+      });
+      return h;
+    }
+    FIRST.forEach(function (t) { if (by[t]) html += group(t); });
+    html += '<div class="sec">🌊 講習の内容</div>' + FIXED.join('');
+    order.forEach(function (t) { if (FIRST.indexOf(t) < 0 && LAST.indexOf(t) < 0) html += group(t); });
+    LAST.forEach(function (t) { if (by[t]) html += group(t); });
     if (!items.length) {
       html += '<div class="card center">いまのところ、表示できる資料はありません。<br>追加されるまで、しばらくお待ちください。</div>';
-    } else {
-      var order = [], by = {};
-      items.forEach(function (it) { if (!by[it.type]) { by[it.type] = []; order.push(it.type); } by[it.type].push(it); });
-      order.forEach(function (t) {
-        html += '<div class="sec">' + (ICONS[t] || '📌') + ' ' + esc(t) + '</div>';
-        by[t].forEach(function (it) {
-          var su = safeUrl(it.url), ext = /^https?:\/\//i.test(su);
-          html += '<a class="item" href="' + esc(su) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
-            '<span class="ico">' + (ICONS[t] || '📌') + '</span>' +
-            '<span class="txt"><b>' + esc(it.title) + '</b>' +
-            (it.desc ? '<small>' + esc(it.desc) + '</small>' : '') +
-            (it.target ? '<small class="tg">対象：' + esc(it.target) + '</small>' : '') +
-            '</span><span class="arrow">›</span></a>';
-        });
-      });
     }
     html += '<details class="more"><summary>別の回の合言葉を追加する</summary><div class="inner">' + formHtml() + '</div></details>';
     app.innerHTML = html;
