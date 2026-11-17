@@ -181,6 +181,15 @@
 
   liff.init({ liffId: LIFF_ID }).then(function () {
     if (!liff.isLoggedIn()) { liff.login(); return; }
+    // ブラウザ（PC・iPad）で、前回のログイン情報が古くなっているとき（約1時間で期限切れ）は、自動でログインし直す
+    if (!liff.isInClient()) {
+      try {
+        var _d = liff.getDecodedIDToken();
+        if (!_d || _d.exp * 1000 < Date.now() + 60000) {
+          if (!sessionStorage.getItem('nbr_relogin')) { sessionStorage.setItem('nbr_relogin', '1'); liff.logout(); liff.login({ redirectUri: location.href }); return; }
+        } else { sessionStorage.removeItem('nbr_relogin'); }
+      } catch (e) {}
+    }
     idToken = liff.getIDToken();
     return call({ action: 'evalInfo' }).then(function (r) {
       if (!r.ok) { showError(r.error || '読み込めませんでした。'); return; }

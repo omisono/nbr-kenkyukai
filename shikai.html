@@ -254,6 +254,15 @@ ul.quotes li { background:#f0fdf4; border-left:5px solid var(--green); border-ra
   function deny(m) { gate.innerHTML = m + '<br><br><a class="back" href="./">登録のページへ ›</a>'; }
   liff.init({ liffId: LIFF_ID }).then(function () {
     if (!liff.isLoggedIn()) { liff.login(); return; }
+    // ブラウザ（PC・iPad）で、前回のログイン情報が古くなっているとき（約1時間で期限切れ）は、自動でログインし直す
+    if (!liff.isInClient()) {
+      try {
+        var _d = liff.getDecodedIDToken();
+        if (!_d || _d.exp * 1000 < Date.now() + 60000) {
+          if (!sessionStorage.getItem('nbr_relogin')) { sessionStorage.setItem('nbr_relogin', '1'); liff.logout(); liff.login({ redirectUri: location.href }); return; }
+        } else { sessionStorage.removeItem('nbr_relogin'); }
+      } catch (e) {}
+    }
     return fetch(GAS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ action: 'status', idToken: liff.getIDToken() }) }).then(function (r) { return r.json(); }).then(function (r) {
       if (r.ok && r.registered) { gate.style.display = 'none'; main.style.display = 'block'; }
